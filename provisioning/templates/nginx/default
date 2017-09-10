@@ -30,9 +30,9 @@ server {
                 try_files $uri $uri/ /index.php?$args;
         }
 
-        location ~ \.php$ {
+        location ~ [^/]\.php(/|$) {
                 #NOTE: You should have "cgi.fix_pathinfo = 0;" in php.ini
-                include fastcgi.conf;
+                include fastcgi_params;
                 fastcgi_intercept_errors on;
                 fastcgi_pass php;
                 fastcgi_buffers 16 16k;
